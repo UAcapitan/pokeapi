@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}Main page{% endblock %}
+
+{% block content %}
+
+<div class="user_info">
+    <br>
+    <p class="text-center h3">{{ user.username }}</p>
+    {% if user.email %}
+        <p class="text-center h3">{{ user.email }}</p>
+    {% else %}
+        <p class="text-center h3">---</p>
+    {% endif %}
+    <br>
+
+    {% if pokemons %}
+        <div class="container">
+            <div class="row">
+                {% for pokemon in pokemons %}
+                    <div class="col-sm-3">
+                        <br>
+                        <a href="{% url 'main:delete_pokemon' pokemon.pokemon_id %}" class="text-decoration-none">
+                            <div class="d-flex justify-content-center">
+                                <div>
+                                    <div class="user_info">
+                                        <div class="card" style="width: 18rem;">
+                                            <img src="{{ pokemon.pokemon_image }}" class="card-img-top" alt="{{ pokemon.pokemon_name }}">
+                                            <div class="card-body">
+                                            <h5 class="card-title text-center text-dark">{{ pokemon.pokemon_name }}</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% else %}
+        <div>
+            <h2 class="text-center">No</h2>
+            <h4 class="text-center">pokemon</h4>
+        </div>
+    {% endif %}
+    <br>
+    <p class="text-center"><a href="{% url 'main:change_pokemon' 1 %}" class="btn btn-primary btn-lg">Choice pokemon</a></p>
+</div>
+
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}      
+
+{% load crispy_forms_tags %}
+
+<div class="container py-5">
+  {% if not user.is_authenticated %}
+    <h1>Login</h1>
+    <form method="POST">
+      {% csrf_token %}
+      {{ login_form|crispy }}
+      <br>
+      <button class="btn btn-primary" type="submit">Login</button>
+    </form>
+    <p class="text-center">Don't have an account? <a href="{% url 'auth_reg' %}">Create an account</a>.</p>
+  {% else %}
+		<br><br><br>
+		<p class="text-center">{{user.username}}, you need to logout before login</p>
+		<p class="text-center"><a class="btn btn-warning" href="{% url 'auth_logout' %}">Logout</a></p>
+	{% endif %}
+</div>
+
+{% endblock %}

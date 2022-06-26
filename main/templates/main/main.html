@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Main page{% endblock %}
+
+{% block content %}
+
+<br><br><br><br>
+
+{% if user.is_authenticated %}
+    <div class="d-flex justify-content-center">
+        <a href="{% url 'main:account' %}" class="btn btn-lg btn-primary">Personal account</a>
+    </div>
+{% else %}
+    <div class="d-flex justify-content-center">
+        <a href="{% url 'auth_reg' %}" class="btn btn-lg btn-success">Registration</a>
+    </div>
+    <br>
+    <div class="d-flex justify-content-center">
+        <a href="{% url 'auth_login' %}" class="btn btn-lg btn-primary">Login</a>
+    </div>
+{% endif %}
+
+
+{% endblock %}

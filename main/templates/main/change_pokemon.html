@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}Main page{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        {% for pokemon in pokemons %}
+            <div class="col-sm-4">
+                <br>
+                <div class="d-flex justify-content-center">
+                    <div class="user_info">
+                        <div class="card" style="width: 18rem;">
+                            <img src="{{ pokemon.img }}" class="card-img-top" alt="{{ pokemon.name }}">
+                            <div class="card-body">
+                            <h5 class="card-title text-center">{{ pokemon.name }}</h5>
+                            <div class="d-flex justify-content-center">
+                                <div>
+                                    <a href="{% url 'main:choice_pokemon' pokemon.id %}" class="btn btn-primary btn-lg">Choice</a>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <br>
+</div>
+
+{% if text %}
+    <p class="text-center">{{ text }}</p>
+{% endif %}
+
+<p class="text-center">
+    {% if back %}
+        <a href="{% url 'main:change_pokemon' back %}" class="h3"><<</a>
+    {% endif %}
+
+    {% if next %}
+        <a href="{% url 'main:change_pokemon' next %}" class="h3">>></a>
+    {% endif %}
+</p>
+
+{% endblock %}

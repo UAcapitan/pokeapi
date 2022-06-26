@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}API{% endblock %}
+
+{% block content %}
+    <br>
+    <p class="text-center h3">API:</p>
+    <br>
+    <p class="text-center"><a href="{% url 'api:users_full_api' 1 %}" class="btn btn-primary btn-lg">Users full</a></p>
+    <br>
+    <p class="text-center"><a href="{% url 'api:users_api' %}" class="btn btn-primary btn-lg">Users</a></p>
+{% endblock %}
